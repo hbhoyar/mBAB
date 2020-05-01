@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>The Multi-Book Advanced Bible Search</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a href="https://github.com/aaronjohnsabu1999/aaronjohnsabu1999.github.io/tree/master/projects">
+      <img style="position:absolute;top:0;right:0;border:0" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_orange_ff7600.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1">
+    </a>
+    <div id="app">
+      <center>
+        <h1>
+          The Multi-Book Advanced Bible Search :
+          <div class="dropdown"> 
+            <span>
+              {{ version }}
+            </span>
+            <div class="dropdown-content">
+              <a v-on:click="version = 'NIV'">NIV</a>
+              <a v-on:click="version = 'NKJV'">NKJV</a>
+              <a v-on:click="version = 'ASV'">ASV</a>
+            </div>
+          </div>
+        </h1>
+      </center>
+      <hr />
+      <br>
+      <center>
+        <form action="/result" method="GET">
+            <label  for="keyword"></label>
+            <input  name="keyword" placeholder="Search for a Word Sequence">
+            <button type="submit">Search</button>
+        </form>
+      </center>
+      <br>
+      <hr />
+      <table style="width:100%">
+        <tr>
+          <th>The Old Testament</th>
+          <th></th>
+          <th>The New Testament</th>
+          <th>Verse List</th>
+        </tr>
+        <tr>
+          <td class="OT1">
+            <ul style="list-style-type:none;">
+              <book_button
+                v-for="book in books"
+                v-bind:book="book"
+                v-bind:key="book.id"
+                v-if="book.testament === 'OT1'"
+              ></book_button>
+            </ul>
+          </td>
+          <td class="OT2">
+            <ul style="list-style-type:none;">
+              <book_button
+                v-for="book in books"
+                v-bind:book="book"
+                v-bind:key="book.id"
+                v-if="book.testament === 'OT2'"
+              ></book_button>
+            </ul>
+          </td>
+          <td class="NT">
+            <ul style="list-style-type:none;">
+              <book_button
+                v-for="book in books"
+                v-bind:book="book"
+                v-bind:key="book.id"
+                v-if="book.testament === 'NT'"
+              ></book_button>
+            </ul>
+          </td>
+
+          <td id="verseList" class="verses">
+            {% for row in rows %}
+            <p>{{ row.Book }} {{ row.Chapter }}:{{ row.Versecount }} - {{ row.verse }}</p>
+            {% endfor %}
+          </td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="books.js"></script>
+  </body>
+</html>
+
+<!--<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <h1>{{ title }}</h1>
+    <form action="/search" method="GET">
+        <label for="keyword">Keyword</label>
+        <input name="keyword">
+        <button type="submit">Search</button>
+    </form>
+</body>
+
+</html>-->
