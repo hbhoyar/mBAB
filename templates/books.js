@@ -22,16 +22,6 @@ Vue.component("book_button", {
   }
 });
 
-/*
-Vue.component("verseDisplay", {
-  props: ["verse"],
-  template:
-    '<li style="padding-bottom: 4px;">\
-      {{ verse.text }}\
-    </li>'
-});
-*/
-
 var app = new Vue({
   el: "#app",
   data: {

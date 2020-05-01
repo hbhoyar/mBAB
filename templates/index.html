@@ -9,33 +9,31 @@
     <a href="https://github.com/aaronjohnsabu1999/aaronjohnsabu1999.github.io/tree/master/projects">
       <img style="position:absolute;top:0;right:0;border:0" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_orange_ff7600.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1">
     </a>
-    <div id="app">
-      <center>
-        <h1>
-          The Multi-Book Advanced Bible Search :
-          <div class="dropdown"> 
-            <span>
-              {{ version }}
-            </span>
-            <div class="dropdown-content">
-              <a v-on:click="version = 'NIV'">NIV</a>
-              <a v-on:click="version = 'NKJV'">NKJV</a>
-              <a v-on:click="version = 'ASV'">ASV</a>
-            </div>
-          </div>
-        </h1>
-      </center>
-      <hr />
-      <br>
-      <center>
-        <form action="/result" method="GET">
-            <label  for="keyword"></label>
-            <input  name="keyword" placeholder="Search for a Word Sequence">
+    <center>
+      <h1>
+        The Multi-Book Advanced Bible Search
+      </h1>
+    </center>
+    <hr />
+    <br>
+    <center>
+      <form class="form-inline" method="GET" action="/result">
+        <div class="form-group">
+          <div class="input-group">
+            <select name="version" class="selectpicker form-control">
+              {% for v in versions %}
+                <option value="{{ v.name }}" {% if v.name == version %} selected="selected" {% endif %}>{{ v.name }}</option>
+              {% endfor %}
+            </select>
+            <input  name="keyword" value={{ keyword }} placeholder="Search for a Word Sequence">
             <button type="submit">Search</button>
-        </form>
-      </center>
-      <br>
-      <hr />
+          </div>
+        </div>
+      </form>
+    </center>
+    <br>
+    <hr />
+    <div id="app">
       <table style="width:100%">
         <tr>
           <th>The Old Testament</th>

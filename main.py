@@ -3,8 +3,78 @@ import sqlite3
 import os
 
 sql = "SELECT * FROM bible WHERE LOWER(verse) LIKE LOWER(?) ORDER BY Book, Chapter, Versecount"
-versions = {"NKJV": 'databases/NKJVBible_Database', "NIV": 'databases/NIVBible_Database', "ASV": 'databases/ASVBible_Database'}
+versions = [{'name': 'NKJV', 'db': 'databases/NKJVBible_Database.db'}, {'name': 'NIV', 'db': 'databases/NIVBible_Database.db'}, {'name': 'ASV', 'db': 'databases/ASVBible_Database.db'}]
+books    = [ {
+      'type': "Pentateuch", 'selected': False, 'testament': "OT1", 'id': 0,  'text': "Genesis" }, {
+      'type': "Pentateuch", 'selected': False, 'testament': "OT1", 'id': 1,  'text': "Exodus" }, {
+      'type': "Pentateuch", 'selected': False, 'testament': "OT1", 'id': 2,  'text': "Leviticus" }, {
+      'type': "Pentateuch", 'selected': False, 'testament': "OT1", 'id': 3,  'text': "Numbers" }, {
+      'type': "Pentateuch", 'selected': False, 'testament': "OT1", 'id': 4,  'text': "Deuteronomy" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 5,  'text': "Joshua" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 6,  'text': "Judges" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 7,  'text': "Ruth" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 8,  'text': "1 Samuel" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 9,  'text': "2 Samuel" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 10, 'text': "1 Kings" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 11, 'text': "2 Kings" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 12, 'text': "1 Chronicles" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 13, 'text': "2 Chronicles" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 14, 'text': "Ezra" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 15, 'text': "Nehemiah" }, {
+      'type': "OTHistory",  'selected': False, 'testament': "OT1", 'id': 16, 'text': "Esther" }, {
+      'type': "OTWisdom",   'selected': False, 'testament': "OT1", 'id': 17, 'text': "Job" }, {
+      'type': "OTWisdom",   'selected': False, 'testament': "OT1", 'id': 18, 'text': "Psalms" }, {
+      'type': "OTWisdom",   'selected': False, 'testament': "OT1", 'id': 19, 'text': "Proverbs" }, {
+      'type': "OTWisdom",   'selected': False, 'testament': "OT1", 'id': 20, 'text': "Song of Songs" }, {
+      'type': "OTWisdom",   'selected': False, 'testament': "OT1", 'id': 21, 'text': "Ecclesiastes" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 22, 'text': "Isaiah" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 23, 'text': "Jeremiah" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 24, 'text': "Lamentations" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 25, 'text': "Ezekiel" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 26, 'text': "Daniel" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 27, 'text': "Hosea" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 28, 'text': "Joel" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 29, 'text': "Amos" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 30, 'text': "Obadiah" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 31, 'text': "Jonah" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 32, 'text': "Micah" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 33, 'text': "Nahum" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 34, 'text': "Habakkuk" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 35, 'text': "Zephaniah" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 36, 'text': "Haggai" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 37, 'text': "Zechariah" }, {
+      'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 38, 'text': "Malachi" }, {
+      'type': "Gospel",     'selected': False, 'testament': "NT",  'id': 39, 'text': "Matthew" }, {
+      'type': "Gospel",     'selected': False, 'testament': "NT",  'id': 40, 'text': "Mark" }, {
+      'type': "Gospel",     'selected': False, 'testament': "NT",  'id': 41, 'text': "Luke" }, {
+      'type': "Gospel",     'selected': False, 'testament': "NT",  'id': 42, 'text': "John" }, {
+      'type': "NTHistory",  'selected': False, 'testament': "NT",  'id': 43, 'text': "Acts of the Apostles" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 44, 'text': "Romans" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 45, 'text': "1 Corinthians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 46, 'text': "2 Corinthians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 47, 'text': "Galatians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 48, 'text': "Ephesians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 49, 'text': "Philippians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 50, 'text': "Colossians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 51, 'text': "1 Thessalonians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 52, 'text': "2 Thessalonians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 53, 'text': "1 Timothy" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 54, 'text': "2 Timothy" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 55, 'text': "Titus" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 56, 'text': "Philemon" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 57, 'text': "Hebrews" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 58, 'text': "James" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 59, 'text': "1 Peter" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 60, 'text': "2 Peter" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 61, 'text': "1 John" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 62, 'text': "2 John" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 63, 'text': "3 John" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 64, 'text': "Jude" }, {
+      'type': "NTProphet",  'selected': False, 'testament': "NT",  'id': 65, 'text': "Revelation" }
+    ]
 version  = "NKJV"
+keyword  = ""
+rows     = []
 
 def dict_factory(cursor, row):
     d = {}
@@ -14,24 +84,37 @@ def dict_factory(cursor, row):
 
 app = Flask(__name__)
 
+def bookUpdate(rows=[]):
+    editRows = []
+    book = ""
+    for row in rows:
+        book = next(item for item in books if item['id'] == row['Book'])['text']
+        editRows.append({'Book': book, 'Chapter': row['Chapter'], 'Versecount': row['Versecount'], 'verse': row['verse']})
+    return editRows
+
+def dbRefresh():
+    global version, versions, sql, keyword, rows
+    print(version)
+    db = sqlite3.connect(next(item for item in versions if item['name'] == version)['db'])
+    db.row_factory = dict_factory
+    cur = db.cursor()
+    cur.execute(sql, ['%' + keyword + '%'])
+    rows = cur.fetchall()
+    cur.close()
+    rows = bookUpdate(rows)
+    return render('index.html', rows = rows, version = version, versions = versions, keyword = keyword)
+
 @app.route('/', methods=['GET'])
 def index():
-    return render('index.html', rows=[])
-
+    global version, versions, sql, keyword
+    return render('index.html', rows = [],   version = version, versions = versions, keyword = keyword)
 
 @app.route('/result', methods=['GET'])
 def search():
-    keyword = '%' + request.args.get('keyword', '') + '%'
-
-    db = sqlite3.connect(versions["NKJV"])
-    db.row_factory = dict_factory
-    cur = db.cursor()
-    cur.execute(sql, [keyword])
-    rows = cur.fetchall()
-    cur.close()
-    
-    return render('index.html', rows=rows)
-
+    global version, versions, sql, keyword
+    keyword = request.args.get('keyword')
+    version = request.args.get('version')
+    return dbRefresh()
 
 if __name__ == '__main__':
     app.run(debug=True)
