@@ -3,7 +3,7 @@ import sqlite3
 import os
 
 sql = "SELECT * FROM bible WHERE LOWER(verse) LIKE LOWER(?) ORDER BY Book, Chapter, Versecount"
-versions = [{'name': 'NKJV', 'db': 'databases/NKJVBible_Database.db'}, {'name': 'NIV', 'db': 'databases/NIVBible_Database.db'}, {'name': 'ASV', 'db': 'databases/ASVBible_Database.db'}]
+versions = [{'name': "NKJV", 'db': 'databases/NKJVBible_Database.db'}, {'name': "ASV", 'db': 'databases/ASVBible_Database.db'}, {'name': "BBE", 'db': 'databases/BBEBible_Database.db'}]
 books    = [ {
       'type': "Pentateuch", 'selected': False, 'testament': "OT1", 'id': 0,  'text': "Genesis" }, {
       'type': "Pentateuch", 'selected': False, 'testament': "OT1", 'id': 1,  'text': "Exodus" }, {
@@ -25,8 +25,8 @@ books    = [ {
       'type': "OTWisdom",   'selected': False, 'testament': "OT1", 'id': 17, 'text': "Job" }, {
       'type': "OTWisdom",   'selected': False, 'testament': "OT1", 'id': 18, 'text': "Psalms" }, {
       'type': "OTWisdom",   'selected': False, 'testament': "OT1", 'id': 19, 'text': "Proverbs" }, {
-      'type': "OTWisdom",   'selected': False, 'testament': "OT1", 'id': 20, 'text': "Song of Songs" }, {
-      'type': "OTWisdom",   'selected': False, 'testament': "OT1", 'id': 21, 'text': "Ecclesiastes" }, {
+      'type': "OTWisdom",   'selected': False, 'testament': "OT2", 'id': 20, 'text': "Song of Songs" }, {
+      'type': "OTWisdom",   'selected': False, 'testament': "OT2", 'id': 21, 'text': "Ecclesiastes" }, {
       'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 22, 'text': "Isaiah" }, {
       'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 23, 'text': "Jeremiah" }, {
       'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 24, 'text': "Lamentations" }, {
@@ -44,36 +44,36 @@ books    = [ {
       'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 36, 'text': "Haggai" }, {
       'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 37, 'text': "Zechariah" }, {
       'type': "OTProphet",  'selected': False, 'testament': "OT2", 'id': 38, 'text': "Malachi" }, {
-      'type': "Gospel",     'selected': False, 'testament': "NT",  'id': 39, 'text': "Matthew" }, {
-      'type': "Gospel",     'selected': False, 'testament': "NT",  'id': 40, 'text': "Mark" }, {
-      'type': "Gospel",     'selected': False, 'testament': "NT",  'id': 41, 'text': "Luke" }, {
-      'type': "Gospel",     'selected': False, 'testament': "NT",  'id': 42, 'text': "John" }, {
-      'type': "NTHistory",  'selected': False, 'testament': "NT",  'id': 43, 'text': "Acts of the Apostles" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 44, 'text': "Romans" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 45, 'text': "1 Corinthians" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 46, 'text': "2 Corinthians" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 47, 'text': "Galatians" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 48, 'text': "Ephesians" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 49, 'text': "Philippians" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 50, 'text': "Colossians" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 51, 'text': "1 Thessalonians" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 52, 'text': "2 Thessalonians" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 53, 'text': "1 Timothy" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 54, 'text': "2 Timothy" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 55, 'text': "Titus" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 56, 'text': "Philemon" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 57, 'text': "Hebrews" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 58, 'text': "James" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 59, 'text': "1 Peter" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 60, 'text': "2 Peter" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 61, 'text': "1 John" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 62, 'text': "2 John" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 63, 'text': "3 John" }, {
-      'type': "Epistle",    'selected': False, 'testament': "NT",  'id': 64, 'text': "Jude" }, {
-      'type': "NTProphet",  'selected': False, 'testament': "NT",  'id': 65, 'text': "Revelation" }
+      'type': "Gospel",     'selected': False, 'testament': "NT1",  'id': 39, 'text': "Matthew" }, {
+      'type': "Gospel",     'selected': False, 'testament': "NT1",  'id': 40, 'text': "Mark" }, {
+      'type': "Gospel",     'selected': False, 'testament': "NT1",  'id': 41, 'text': "Luke" }, {
+      'type': "Gospel",     'selected': False, 'testament': "NT1",  'id': 42, 'text': "John" }, {
+      'type': "NTHistory",  'selected': False, 'testament': "NT1",  'id': 43, 'text': "Acts of the Apostles" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT1",  'id': 44, 'text': "Romans" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT1",  'id': 45, 'text': "1 Corinthians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT1",  'id': 46, 'text': "2 Corinthians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT1",  'id': 47, 'text': "Galatians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT1",  'id': 48, 'text': "Ephesians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT1",  'id': 49, 'text': "Philippians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT1",  'id': 50, 'text': "Colossians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT1",  'id': 51, 'text': "1 Thessalonians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT1",  'id': 52, 'text': "2 Thessalonians" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 53, 'text': "1 Timothy" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 54, 'text': "2 Timothy" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 55, 'text': "Titus" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 56, 'text': "Philemon" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 57, 'text': "Hebrews" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 58, 'text': "James" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 59, 'text': "1 Peter" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 60, 'text': "2 Peter" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 61, 'text': "1 John" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 62, 'text': "2 John" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 63, 'text': "3 John" }, {
+      'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 64, 'text': "Jude" }, {
+      'type': "NTProphet",  'selected': False, 'testament': "NT2",  'id': 65, 'text': "Revelation" }
     ]
 version  = "NKJV"
-keyword  = ""
+keyword  = "God"
 rows     = []
 
 def dict_factory(cursor, row):
@@ -85,11 +85,16 @@ def dict_factory(cursor, row):
 app = Flask(__name__)
 
 def bookUpdate(rows=[]):
+    chBooks = []
+    for book in books:
+        if book['selected'] == True:
+            chBooks.append(book['id'])
     editRows = []
-    book = ""
     for row in rows:
-        book = next(item for item in books if item['id'] == row['Book'])['text']
-        editRows.append({'Book': book, 'Chapter': row['Chapter'], 'Versecount': row['Versecount'], 'verse': row['verse']})
+        if row['Book'] in chBooks:
+            book = next(item for item in books if item['id'] == row['Book'])['text']
+            print("Searching in " + book)
+            editRows.append({'Book': book, 'Chapter': row['Chapter'], 'Versecount': row['Versecount'], 'verse': row['verse']})
     return editRows
 
 def dbRefresh():
@@ -102,18 +107,28 @@ def dbRefresh():
     rows = cur.fetchall()
     cur.close()
     rows = bookUpdate(rows)
-    return render('index.html', rows = rows, version = version, versions = versions, keyword = keyword)
+    return render('index.html', rows = rows, version = version, versions = versions, keyword = keyword, books = books)
 
 @app.route('/', methods=['GET'])
 def index():
     global version, versions, sql, keyword
-    return render('index.html', rows = [],   version = version, versions = versions, keyword = keyword)
+    return render('index.html', rows = [],   version = version, versions = versions, keyword = keyword, books = books)
 
 @app.route('/result', methods=['GET'])
 def search():
     global version, versions, sql, keyword
     keyword = request.args.get('keyword')
     version = request.args.get('version')
+    return dbRefresh()
+
+@app.route('/bookChoose', methods=['GET'])
+def bookSelect():
+    global version, versions, sql, keyword
+    bkName = request.args.get("book")
+    for book in books:
+        if book['text'] == bkName: 
+            book['selected'] = not book['selected']
+            break
     return dbRefresh()
 
 if __name__ == '__main__':
