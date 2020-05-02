@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template as render
 import sqlite3
-import os
 
 sql = "SELECT * FROM bible WHERE LOWER(verse) LIKE LOWER(?) ORDER BY Book, Chapter, Versecount"
 versions = [{'expansion': "New King James Version",      'name': "NKJV", 'db': 'databases/NKJVBible_Database.db', 'wiki': 'https://en.wikipedia.org/wiki/New_King_James_Version'},
@@ -80,9 +79,11 @@ books    = [ {
       'type': "NTProphet",  'selected': False, 'testament': "NT2",  'id': 65, 'text': "Revelation" }
     ]
 version  = versions[0]
-keyword  = "God"
+keyword  = ""
 rows     = []
 caseSns  = False
+ot       = False
+nt       = False
 
 def dict_factory(cursor, row):
     d = {}
@@ -98,7 +99,6 @@ def bookUpdate(rows=[]):
         if book['selected'] == True:
             chBooks.append(book['id'])
     editRows = []
-    print(caseSns)
     for row in rows:
         if (row['Book'] in chBooks) and (not caseSns or keyword in row['verse']):
             book = next(item for item in books if item['id'] == row['Book'])['text']
@@ -116,9 +116,19 @@ def dbRefresh():
     rows = bookUpdate(rows)
     return render('index.html', rows = rows, version = version, versions = versions, keyword = keyword, books = books, caseSns = caseSns)
 
+
+
 @app.route('/', methods=['GET'])
 def index():
-    global version, versions, sql, keyword
+    global version, versions, sql, keyword, caseSns, rows, ot, nt
+    version = versions[0]
+    keyword = ""
+    rows    = []
+    caseSns = False
+    ot      = False
+    nt      = False
+    for book in books:
+        book['selected'] = False
     return render('index.html', rows = [],   version = version, versions = versions, keyword = keyword, books = books, caseSns = caseSns)
 
 @app.route('/result', methods=['GET'])
@@ -127,7 +137,7 @@ def search():
     keyword     = request.args.get('keyword')
     versionName = request.args.get('version')
     caseSns     = request.args.get('caseSns')
-    
+
     for v in versions:
         if v['name'] == versionName:
             version = v
@@ -140,11 +150,31 @@ def caseFlip():
     caseSns = not(caseSns)
     return dbRefresh()
 
+def updateSelection(list):
+    for book in books:
+        if book['testament'] in list:
+            book['selected'] = not book['selected']
+    return
+
+@app.route('/testChoose/<test>', methods=['GET'])
+def updateTestament(test):
+    if test=="ot":
+        updateSelection(["OT1", "OT2"])
+    elif test=="nt":
+        updateSelection(["NT1", "NT2"])
+    else:
+        if all(book['selected'] for book in books):
+            updateSelection(["OT1", "OT2", "NT1", "NT2"])
+        else:
+            for book in books:
+                book['selected'] = True
+    return dbRefresh()
+
 @app.route('/bookChoose', methods=['GET'])
 def bookSelect():
-    global version, versions, sql, keyword
+    global version, versions, sql, keyword, ot, nt
     bkName  = request.args.get("book")
-
+        
     for book in books:
         if book['text'] == bkName: 
             book['selected'] = not book['selected']
