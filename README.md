@@ -11,6 +11,7 @@ For starting off,
     make
 
 ***
+Contributions and suggestions regarding the format and appearance have been provided by my dad, [Sabu John](https://www.facebook.com/sabu.john.104) and my mom, Jessy Sabu John  
 Support for Flask has been provided extensively by [@hbhoyar](https://github.com/hbhoyar)  
 The databases have been parsed from the SQL databases provided by [@scrollmapper](https://github.com/scrollmapper)
 
