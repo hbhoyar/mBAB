@@ -6,9 +6,13 @@ body {
   background-color: #F9F0E0;
 }
 
-table{
-	border-spacing: 0px;
-	table-layout:  fixed;
+form {
+  display: inline-block
+}
+
+table {
+  border-spacing: 0px;
+  table-layout:  fixed;
 }
 
 th {
@@ -22,23 +26,23 @@ td {
 }
 
 td.OT1 {
-	border-style: solid;
-	border-width: 3px 0px 3px 3px;
+  border-style: solid;
+  border-width: 3px 0px 3px 3px;
 }
 
 td.OT2 {
-	border-style: solid;
-	border-width: 3px 0px 3px 0px;
+  border-style: solid;
+  border-width: 3px 0px 3px 0px;
 }
 
 td.NT {
-	border-style: solid;
-	border-width: 3px 3px 3px 0px;
+  border-style: solid;
+  border-width: 3px 3px 3px 0px;
 }
 
 td.verses {
-	border-style: solid;
-	border-width: 3px 3px 3px 3px;
+  border-style: solid;
+  border-width: 3px 3px 3px 3px;
 }
 
 input {

@@ -82,6 +82,7 @@ books    = [ {
 version  = versions[0]
 keyword  = "God"
 rows     = []
+caseSns  = False
 
 def dict_factory(cursor, row):
     d = {}
@@ -97,10 +98,10 @@ def bookUpdate(rows=[]):
         if book['selected'] == True:
             chBooks.append(book['id'])
     editRows = []
+    print(caseSns)
     for row in rows:
-        if row['Book'] in chBooks:
+        if (row['Book'] in chBooks) and (not caseSns or keyword in row['verse']):
             book = next(item for item in books if item['id'] == row['Book'])['text']
-            print("Searching in " + book)
             editRows.append({'Book': book, 'Chapter': row['Chapter'], 'Versecount': row['Versecount'], 'verse': row['verse']})
     return editRows
 
@@ -113,28 +114,37 @@ def dbRefresh():
     rows = cur.fetchall()
     cur.close()
     rows = bookUpdate(rows)
-    return render('index.html', rows = rows, version = version, versions = versions, keyword = keyword, books = books)
+    return render('index.html', rows = rows, version = version, versions = versions, keyword = keyword, books = books, caseSns = caseSns)
 
 @app.route('/', methods=['GET'])
 def index():
     global version, versions, sql, keyword
-    return render('index.html', rows = [],   version = version, versions = versions, keyword = keyword, books = books)
+    return render('index.html', rows = [],   version = version, versions = versions, keyword = keyword, books = books, caseSns = caseSns)
 
 @app.route('/result', methods=['GET'])
 def search():
     global version, versions, sql, keyword
-    keyword = request.args.get('keyword')
+    keyword     = request.args.get('keyword')
     versionName = request.args.get('version')
+    caseSns     = request.args.get('caseSns')
+    
     for v in versions:
         if v['name'] == versionName:
             version = v
-            break
+            break  
+    return dbRefresh()
+
+@app.route('/case', methods=['GET'])
+def caseFlip():
+    global version, versions, sql, keyword, caseSns
+    caseSns = not(caseSns)
     return dbRefresh()
 
 @app.route('/bookChoose', methods=['GET'])
 def bookSelect():
     global version, versions, sql, keyword
-    bkName = request.args.get("book")
+    bkName  = request.args.get("book")
+
     for book in books:
         if book['text'] == bkName: 
             book['selected'] = not book['selected']

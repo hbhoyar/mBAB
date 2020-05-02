@@ -17,21 +17,39 @@
     <hr />
     <br>
     <center>
-    <form class="form-inline" method="GET" action="/result">
-      <div class="form-group">
-        <div class="input-group">
-          Version:
-          <select name="version" class="selectpicker form-control">
-            {% for v in versions %}
-              <option value="{{ v.name }}" {% if v.name == version.name %} selected="selected" {% endif %}>{{ v.name }}</option>
-            {% endfor %}
-          </select> &nbsp;
-          <input  name="keyword" placeholder="Search for a Word Sequence" value={{ keyword }}>
-          <button type="submit">Search</button>
-          &nbsp;&nbsp;&nbsp; About the version: <a href="{{ version.wiki }}">{{ version.expansion }}</a>
-        </div>
-      </div>
-    </form>
+    <table>
+    <tr>
+      <form method="GET" action="/case">
+        <button
+          type="submit"
+          {% if caseSns %}
+            class="btn-gradient red mini"
+          {% else %}
+            class="btn-gradient blue mini"
+          {% endif %}>
+          Case Sensitive
+        </button>
+      </form>
+      <form method="GET" action="/result">
+        Version:
+        <select name="version" class="selectpicker form-control">
+          {% for v in versions %}
+            <option
+              value="{{ v.name }}"
+              {% if v.name == version.name %}
+                selected="selected"
+              {% endif %}>
+              {{ v.name }}
+            </option>
+          {% endfor %}
+        </select> &nbsp;
+        <input  name="keyword" placeholder="Search for a Word Sequence" value={{ keyword }}>
+        <button type="submit">Search</button>
+        &nbsp;&nbsp;&nbsp; About the version:
+        <a href="{{ version.wiki }}">{{ version.expansion }}</a>
+      </form>      
+    </tr>
+    </table>
     </center>
     <br>
     <hr />
