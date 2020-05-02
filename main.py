@@ -3,7 +3,14 @@ import sqlite3
 import os
 
 sql = "SELECT * FROM bible WHERE LOWER(verse) LIKE LOWER(?) ORDER BY Book, Chapter, Versecount"
-versions = [{'name': "NKJV", 'db': 'databases/NKJVBible_Database.db'}, {'name': "ASV", 'db': 'databases/ASVBible_Database.db'}, {'name': "BBE", 'db': 'databases/BBEBible_Database.db'}]
+versions = [{'expansion': "New King James Version",      'name': "NKJV", 'db': 'databases/NKJVBible_Database.db', 'wiki': 'https://en.wikipedia.org/wiki/New_King_James_Version'},
+            {'expansion': "American Standard Version",   'name': "ASV",  'db': 'databases/ASVBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/American_Standard_Version'},
+            {'expansion': "King James Version",          'name': "KJV",  'db': 'databases/KJVBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/King_James_Version	'},
+            {'expansion': "Young's Literal Translation", 'name': "YLT",  'db': 'databases/YLTBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/Young\'s_Literal_Translation'},
+            {'expansion': "Darby English Bible",         'name': "DBY",  'db': 'databases/DBYBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/Darby_Bible'},
+            {'expansion': "Webster's Revision",          'name': "WBT",  'db': 'databases/WBTBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/Webster%27s_Revision'},
+            {'expansion': "World English Bible",         'name': "WEB",  'db': 'databases/WEBBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/World_English_Bible'},
+            {'expansion': "Bible in Basic English",      'name': "BBE",  'db': 'databases/BBEBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/Bible_in_Basic_English'}]
 books    = [ {
       'type': "Pentateuch", 'selected': False, 'testament': "OT1", 'id': 0,  'text': "Genesis" }, {
       'type': "Pentateuch", 'selected': False, 'testament': "OT1", 'id': 1,  'text': "Exodus" }, {
@@ -72,7 +79,7 @@ books    = [ {
       'type': "Epistle",    'selected': False, 'testament': "NT2",  'id': 64, 'text': "Jude" }, {
       'type': "NTProphet",  'selected': False, 'testament': "NT2",  'id': 65, 'text': "Revelation" }
     ]
-version  = "NKJV"
+version  = versions[0]
 keyword  = "God"
 rows     = []
 
@@ -99,8 +106,7 @@ def bookUpdate(rows=[]):
 
 def dbRefresh():
     global version, versions, sql, keyword, rows
-    print(version)
-    db = sqlite3.connect(next(item for item in versions if item['name'] == version)['db'])
+    db = sqlite3.connect(next(item for item in versions if item['name'] == version['name'])['db'])
     db.row_factory = dict_factory
     cur = db.cursor()
     cur.execute(sql, ['%' + keyword + '%'])
@@ -118,7 +124,11 @@ def index():
 def search():
     global version, versions, sql, keyword
     keyword = request.args.get('keyword')
-    version = request.args.get('version')
+    versionName = request.args.get('version')
+    for v in versions:
+        if v['name'] == versionName:
+            version = v
+            break
     return dbRefresh()
 
 @app.route('/bookChoose', methods=['GET'])

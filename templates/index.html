@@ -20,13 +20,15 @@
     <form class="form-inline" method="GET" action="/result">
       <div class="form-group">
         <div class="input-group">
+          Version:
           <select name="version" class="selectpicker form-control">
             {% for v in versions %}
-              <option value="{{ v.name }}" {% if v.name == version %} selected="selected" {% endif %}>{{ v.name }}</option>
+              <option value="{{ v.name }}" {% if v.name == version.name %} selected="selected" {% endif %}>{{ v.name }}</option>
             {% endfor %}
-          </select>
+          </select> &nbsp;
           <input  name="keyword" placeholder="Search for a Word Sequence" value={{ keyword }}>
           <button type="submit">Search</button>
+          &nbsp;&nbsp;&nbsp; About the version: <a href="{{ version.wiki }}">{{ version.expansion }}</a>
         </div>
       </div>
     </form>
