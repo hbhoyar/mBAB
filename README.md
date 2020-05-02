@@ -3,6 +3,7 @@
 This web application is one which provides the user the ability to search for a word sequence, case-sensitive or case-insensitive, in a specified set of books of the Holy Bible.  
 The web application has been hosted on [this platform](http://aaronjs.pythonanywhere.com/)
 
+![A Search Example](./mBAB.png "Searching for 'saviour' in the NKJV version of the entire Bible")
 ***
 For starting off,  
 
