@@ -128,7 +128,7 @@ def index():
     ot      = False
     nt      = False
     for book in books:
-        book['selected'] = False
+        book['selected'] = True
     return render('index.html', rows = [],   version = version, versions = versions, keyword = keyword, books = books, caseSns = caseSns)
 
 @app.route('/result', methods=['GET'])
