@@ -17,4 +17,13 @@ Support for Flask has been provided extensively by [@hbhoyar](https://github.com
 The databases have been parsed from the SQL databases provided by [@scrollmapper](https://github.com/scrollmapper)
 
 ***
+### Possible additions and modifications
+##### You are most welcome to contribute for adding to this list (issues) and for removing from this list (pull requests)
+
+* Addition of an Search ORing capability; i.e., to search for any of the several keywords of those provided by the user
+* Removal of PythonAnywhere cache when opened by a new user (presently, an entry by one user may be displayed as the entry in the browser of another user)
+* More/Better styling features and a logo for mBAB
+* Pagination for verses as an option to the user (not everyone wants pagination but some may prefer it for better
+
+***
 This project has been licensed under [![The GNU General Public License v3.0](https://www.gnu.org/graphics/gplv3-88x31.png "The GNU General Public License v3.0")](https://www.gnu.org/licenses/gpl-3.0.en.html)
