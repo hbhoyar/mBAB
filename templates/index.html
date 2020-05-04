@@ -193,7 +193,13 @@
                   &nbsp; {{ row.Book }} {{ row.Chapter }}:{{ row.Versecount }} &nbsp;&nbsp;
                 </td>
                 <td>
-                  {{ row.verse }}
+                  {%- for part in row.verse -%}
+                    {%- if (not (keyword == "")) and ((keyword.upper() in part.upper() and not caseSns) or keyword in part) -%}
+                      <mark>{{ part }}</mark>
+                    {%- else -%}
+                      {{ part }}
+                    {%- endif -%}
+                  {%- endfor -%}
                 </td>
               </tr>
               <tr>

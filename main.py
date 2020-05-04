@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template as render
 import sqlite3
+import re
 
 sql = "SELECT * FROM bible WHERE LOWER(verse) LIKE LOWER(?) ORDER BY Book, Chapter, Versecount"
 versions = [{'expansion': "New King James Version",      'name': "NKJV", 'db': 'databases/NKJVBible_Database.db', 'wiki': 'https://en.wikipedia.org/wiki/New_King_James_Version'},
@@ -114,6 +115,11 @@ def dbRefresh():
     rows = cur.fetchall()
     cur.close()
     rows = bookUpdate(rows)
+    for row in rows:
+      if (keyword == "") :
+        row['verse'] = re.split("( )", row['verse'], flags=re.IGNORECASE)
+      else:
+        row['verse'] = re.split("("+keyword+")", row['verse'], flags=re.IGNORECASE)
     return render('index.html', rows = rows, version = version, versions = versions, keyword = keyword, books = books, caseSns = caseSns)
 
 
