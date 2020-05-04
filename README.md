@@ -1,5 +1,15 @@
 # The Multi-Book Advanced Bible Search
 
+### Table of Contents
+
+- [Introduction](#Introduction)
+- [For the Developer...](#For the Developer...)
+  * [Useful Links](#Useful Links)
+  * [Installation of Necessary Packages](#Installation of Necessary Packages)
+- [Contributors](#Contributors)
+- [Possible additions and modifications](#Possible additions and modifications)
+- [License](#License)
+
 ### Introduction
 
 This web application is one which provides the user the ability to search for a word sequence, case-sensitive or case-insensitive, in a specified set of books of the Holy Bible.  
@@ -13,7 +23,8 @@ The web application has been hosted on [this platform](http://aaronjs.pythonanyw
 
 * [Jinja Template and Syntax](https://jinja.palletsprojects.com/en/2.11.x/templates/)
 
-#### Installation of Necessary Packages (Python 3)
+#### Installation of Necessary Packages
+(Python 3.6.9 has been used for the development of the web app)
 
     sudo apt install make  
     make install  
