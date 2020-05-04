@@ -41,6 +41,7 @@ The databases have been parsed from the SQL databases provided by [@scrollmapper
 ### Possible additions and modifications
 ##### You are most welcome to contribute for adding to this list (issues) and for removing from this list (pull requests)
 
+* Making the web application completely compatible for mobile devices; i.e., devices without $$1920\times 1080$$ resolution
 * Addition of an Search ORing capability; i.e., to search for any of the several keywords of those provided by the user
 * Addition of copyrighted versions such as ESV, NIV and BSI Indian versions (which also require Indian language keyboards)
 * Removal of PythonAnywhere cache when opened by a new user (presently, an entry by one user may be displayed as the entry in the browser of another user): Storing search keyword, version, case-sensitivity, selected books and rows on the browser of the user rather than on the webpage hosting platform (PythonAnywhere): Refer to [this StackOverflow answer](https://stackoverflow.com/a/16206342/6539635)
@@ -48,6 +49,7 @@ The databases have been parsed from the SQL databases provided by [@scrollmapper
 * Pagination for verses as an option to the user (not everyone wants pagination but some may prefer it for better rendering of the verses
 * Subdivision of the testaments such as Law, History, Gospels, etc. (conflicting suggestions - not to be pursued at the moment)
 * Highlighting the search keyword in the results (DONE)
+* Display of the number of matching verses (DONE)
 
 ***
 ### License

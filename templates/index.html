@@ -13,12 +13,18 @@
     <meta charset="UTF-8" />
     <title>The Multi-Book Advanced Bible Search</title>
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='stylesheets/styles.css') }}" />
+    <script>
+      var viewMode = getCookie("view-mode");
+      if(viewMode == "desktop") {
+        viewport.setAttribute('content', 'width=1024');
+      }
+      else if (viewMode == "mobile") {
+        viewport.setAttribute('content', 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no');
+	  }
+	</script>
   </head>
   <body>
-  	<form method="GET" action="/">
-      <img style="position:absolute;top:0;left:0;border:0" width="149" height="149" src="../mBAB_Logo.png" class="attachment-full size-full" alt="mBAB" data-recalc-dims="1">
-    </form>
-    <a href="https://github.com/aaronjohnsabu1999/AdvBibleSearch" target="_blank">
+  	<a href="https://github.com/aaronjohnsabu1999/AdvBibleSearch" target="_blank">
       <img style="position:absolute;top:0;right:0;border:0" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_orange_ff7600.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1">
     </a>
     <center>
@@ -33,7 +39,6 @@
         <tr>
           <td>
           <button id="myBtn" class="btn yellow mini">About and How To Use</button>
-      
           <div id="myModal" class="modal">
             <div class="modal-content">
               <span class="close">&times;</span>
@@ -144,7 +149,12 @@
               </th>
             </table>
           </th>
-          <th>Verse List</th>
+          <th>
+            Verse List
+            {% if not(keyword == "") or not(rows|length == 0) %}
+              : Found {{ rows|length }} verses
+            {% endif %}
+          </th>
         </tr>
         <tr>
     <form class="form-inline" method="GET" action="/bookChoose">
