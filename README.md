@@ -12,7 +12,7 @@ For starting off,
     make
 
 ***
-Contributions and suggestions regarding the format and appearance have been provided by my dad, [Sabu John](https://www.facebook.com/sabu.john.104) and my mom, Jessy Sabu John  
+Contributions and suggestions have been provided by my dad, [Sabu John](https://www.facebook.com/sabu.john.104) and my mom, Jessy Sabu John, alongside several other users.  
 Support for Flask has been provided extensively by [@hbhoyar](https://github.com/hbhoyar)  
 The databases have been parsed from the SQL databases provided by [@scrollmapper](https://github.com/scrollmapper)
 
@@ -22,11 +22,11 @@ The databases have been parsed from the SQL databases provided by [@scrollmapper
 
 * Addition of an Search ORing capability; i.e., to search for any of the several keywords of those provided by the user
 * Highlighting the search keyword in the results
-* Subdivision of the testaments such as Law, History, Gospels, etc. (in progress)
 * Addition of copyrighted versions such as ESV, NIV and BSI Indian versions (which also require Indian language keyboards)
 * Removal of PythonAnywhere cache when opened by a new user (presently, an entry by one user may be displayed as the entry in the browser of another user): Storing search keyword, version, case-sensitivity, selected books and rows on the browser of the user rather than on the webpage hosting platform (PythonAnywhere)
 * More styling features and a logo for mBAB
 * Pagination for verses as an option to the user (not everyone wants pagination but some may prefer it for better
+* Subdivision of the testaments such as Law, History, Gospels, etc. (conflicting suggestions - not to be pursued at the moment)
 
 ***
 This project has been licensed under [![The GNU General Public License v3.0](https://www.gnu.org/graphics/gplv3-88x31.png "The GNU General Public License v3.0")](https://www.gnu.org/licenses/gpl-3.0.en.html)
