@@ -2,13 +2,13 @@
 
 ### Table of Contents
 
-- [Introduction](#Introduction)
-- [For the Developer...](#For the Developer...)
-  * [Useful Links](#Useful Links)
-  * [Installation of Necessary Packages](#Installation of Necessary Packages)
-- [Contributors](#Contributors)
-- [Possible additions and modifications](#Possible additions and modifications)
-- [License](#License)
+- [Introduction](#introduction)
+- [For the Developer...](#for-the-developer)
+  * [Useful Links](#useful-links)
+  * [Installation of Necessary Packages](#installation-of-necessary-packages)
+- [Contributors](#contributors)
+- [Possible additions and modifications](#possible-additions-and-modifications)
+- [License](#license)
 
 ### Introduction
 
