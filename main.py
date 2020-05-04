@@ -50,33 +50,33 @@ books    = [ {
       'type': "OTProphet",  'selected': True, 'testament': "OT2", 'id': 36, 'text': "Haggai" }, {
       'type': "OTProphet",  'selected': True, 'testament': "OT2", 'id': 37, 'text': "Zechariah" }, {
       'type': "OTProphet",  'selected': True, 'testament': "OT2", 'id': 38, 'text': "Malachi" }, {
-      'type': "Gospel",     'selected': True, 'testament': "NT1",  'id': 39, 'text': "Matthew" }, {
-      'type': "Gospel",     'selected': True, 'testament': "NT1",  'id': 40, 'text': "Mark" }, {
-      'type': "Gospel",     'selected': True, 'testament': "NT1",  'id': 41, 'text': "Luke" }, {
-      'type': "Gospel",     'selected': True, 'testament': "NT1",  'id': 42, 'text': "John" }, {
-      'type': "NTHistory",  'selected': True, 'testament': "NT1",  'id': 43, 'text': "Acts of the Apostles" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT1",  'id': 44, 'text': "Romans" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT1",  'id': 45, 'text': "1 Corinthians" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT1",  'id': 46, 'text': "2 Corinthians" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT1",  'id': 47, 'text': "Galatians" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT1",  'id': 48, 'text': "Ephesians" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT1",  'id': 49, 'text': "Philippians" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT1",  'id': 50, 'text': "Colossians" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT1",  'id': 51, 'text': "1 Thessalonians" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT1",  'id': 52, 'text': "2 Thessalonians" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 53, 'text': "1 Timothy" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 54, 'text': "2 Timothy" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 55, 'text': "Titus" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 56, 'text': "Philemon" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 57, 'text': "Hebrews" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 58, 'text': "James" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 59, 'text': "1 Peter" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 60, 'text': "2 Peter" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 61, 'text': "1 John" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 62, 'text': "2 John" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 63, 'text': "3 John" }, {
-      'type': "Epistle",    'selected': True, 'testament': "NT2",  'id': 64, 'text': "Jude" }, {
-      'type': "NTProphet",  'selected': True, 'testament': "NT2",  'id': 65, 'text': "Revelation" }
+      'type': "Gospel",     'selected': True, 'testament': "NT1", 'id': 39, 'text': "Matthew" }, {
+      'type': "Gospel",     'selected': True, 'testament': "NT1", 'id': 40, 'text': "Mark" }, {
+      'type': "Gospel",     'selected': True, 'testament': "NT1", 'id': 41, 'text': "Luke" }, {
+      'type': "Gospel",     'selected': True, 'testament': "NT1", 'id': 42, 'text': "John" }, {
+      'type': "NTHistory",  'selected': True, 'testament': "NT1", 'id': 43, 'text': "Acts of the Apostles" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT1", 'id': 44, 'text': "Romans" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT1", 'id': 45, 'text': "1 Corinthians" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT1", 'id': 46, 'text': "2 Corinthians" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT1", 'id': 47, 'text': "Galatians" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT1", 'id': 48, 'text': "Ephesians" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT1", 'id': 49, 'text': "Philippians" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT1", 'id': 50, 'text': "Colossians" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT1", 'id': 51, 'text': "1 Thessalonians" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT1", 'id': 52, 'text': "2 Thessalonians" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 53, 'text': "1 Timothy" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 54, 'text': "2 Timothy" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 55, 'text': "Titus" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 56, 'text': "Philemon" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 57, 'text': "Hebrews" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 58, 'text': "James" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 59, 'text': "1 Peter" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 60, 'text': "2 Peter" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 61, 'text': "1 John" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 62, 'text': "2 John" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 63, 'text': "3 John" }, {
+      'type': "Epistle",    'selected': True, 'testament': "NT2", 'id': 64, 'text': "Jude" }, {
+      'type': "NTProphet",  'selected': True, 'testament': "NT2", 'id': 65, 'text': "Revelation" }
     ]
 version  = versions[0]
 keyword  = ""

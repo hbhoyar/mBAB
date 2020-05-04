@@ -21,183 +21,186 @@
     <center>
       <header>
         <h1>The Multi-Book Advanced Bible Search</h1>
-        &nbsp;&nbsp;&nbsp; <h4> developed by Aaron John Sabu </h4>
+        &nbsp;&nbsp; <h4> by Aaron John Sabu </h4>
       </header>
-    </center>
-    <hr />
-    <br>
-    <center>
-    <table>
-    <tr>
-    <td>
-      <button id="myBtn" class="btn yellow mini">About and How To Use</button>
+      &nbsp;&nbsp;&nbsp; best viewed on a 1920×1080 screen
+   	  <hr />
+      <br>
+      <table>
+        <tr>
+          <td>
+          <button id="myBtn" class="btn yellow mini">About and How To Use</button>
       
-      <div id="myModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>About mBAB</h2>
-          <p>The Multi-Book Advanced Bible Search (mBAB) is a web application which can be used to search for verses containing a particular word sequence in a user-specified set of books. </p>
-          <h2>About the developer</h2>
-          <p>Aaron John Sabu is an undergraduate student at the Indian Institute of Technology Bombay (IIT-B) and is pursuing research in fields such as robotics and embedded systems. You can find him on <a href="https://aaronjohnsabu1999.github.io" target="_blank">his homepage</a></p>
-          <h2>How to use mBAB</h2>
-          <p>
-            You have the option to choose the version out of several English versions of the Holy Bible. You may enter the required word sequence in the search box that follows and provide these inputs to the application by selecting 'Search'. You can search either case-sensitively or case-insensitively, the latter being the default value.<br>
-            The books of the Holy Bible to search in for the word sequence can be selected in the left hand side of the web application. By default, all of them are deselected. You may search in the entire Bible by selecting the corresponding button. Selecting 'The Old Testament' (or 'The New Testament') will flip the selection value of the book, i.e. if a book in the Old Testament (or New Testament) is already selected, it will be deselected, and vice versa.<br>
-            'Reset All' can be used to bring all the parameters of the applications back to default; i.e. the default version of NKJV, default search keyword being empty and the search being case-insensitive. Also, the entire Bible will be selected.<br><br>
-            Please do fork the <a href="https://github.com/aaronjohnsabu1999/AdvBibleSearch" target="_blank">code repository hosted on GitHub</a> if interested in developing the application further.<br>
-            Issues can be posted on the <a href="https://github.com/aaronjohnsabu1999/AdvBibleSearch/issues" target="_blank">Issues</a> forum<br>
-            Pull requests will be looked into and merged as per need and correctness with the contributor acknowledged in the repository. Please create them on the <a href="https://github.com/aaronjohnsabu1999/AdvBibleSearch/pulls" target="_blank">Pull Requests</a> tab<br><hr><br>
-            This project has been licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank"> The GNU General Public License v3.0 <img src="https://www.gnu.org/graphics/gplv3-88x31.png"></a>
-          </p>
-        </div>
-      </div>
+          <div id="myModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>About mBAB</h2>
+              <p>The Multi-Book Advanced Bible Search (mBAB) is a web application which can be used to search for verses containing a particular word sequence in a user-specified set of books. </p>
+              <h2>About the developer</h2>
+              <p>Aaron John Sabu is an undergraduate student at the Indian Institute of Technology Bombay (IIT-B) and is pursuing research in fields such as robotics and embedded systems. You can find him on <a href="https://aaronjohnsabu1999.github.io" target="_blank">his homepage</a></p>
+              <h2>How to use mBAB</h2>
+              <p>
+                You have the option to choose the version out of several English versions of the Holy Bible. You may enter the required word sequence in the search box that follows and provide these inputs to the application by selecting 'Search'. You can search either case-sensitively or case-insensitively, the latter being the default value.<br>
+                The books of the Holy Bible to search in for the word sequence can be selected in the left hand side of the web application. By default, all of them are deselected. You may search in the entire Bible by selecting the corresponding button. Selecting 'The Old Testament' (or 'The New Testament') will flip the selection value of the book, i.e. if a book in the Old Testament (or New Testament) is already selected, it will be deselected, and vice versa.<br>
+                'Reset All' can be used to bring all the parameters of the applications back to default; i.e. the default version of NKJV, default search keyword being empty and the search being case-insensitive. Also, the entire Bible will be selected.<br><br>
+                Please do fork the <a href="https://github.com/aaronjohnsabu1999/AdvBibleSearch" target="_blank">code repository hosted on GitHub</a> if interested in developing the application further.<br>
+                Issues can be posted on the <a href="https://github.com/aaronjohnsabu1999/AdvBibleSearch/issues" target="_blank">Issues</a> forum<br>
+                Pull requests will be looked into and merged as per need and correctness with the contributor acknowledged in the repository. Please create them on the <a href="https://github.com/aaronjohnsabu1999/AdvBibleSearch/pulls" target="_blank">Pull Requests</a> tab<br><hr><br>
+                This project has been licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank"> The GNU General Public License v3.0 <img src="https://www.gnu.org/graphics/gplv3-88x31.png"></a>
+              </p>
+            </div>
+          </div>
       
-      <script>
-        var modal = document.getElementById("myModal");
-        var btn = document.getElementById("myBtn");
-        var span = document.getElementsByClassName("close")[0];
-        btn.onclick = function() {
-          modal.style.display = "block";
-        }
-        span.onclick = function() {
-          modal.style.display = "none";
-        }
-        window.onclick = function(event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
-      </script>
-      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-      <form method="GET" action="/">
-        <button type="submit" class="btn-gradient red mini">
-          Reset All
-        </button>
-      </form>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <form method="GET" action="/result">
-        Version:
-        <select name="version" class="selectpicker form-control">
-          {% for v in versions %}
-            <option
-              value="{{ v.name }}"
-              {% if v.name == version.name %}
-                selected="selected"
+          <script>
+            var modal = document.getElementById("myModal");
+            var btn = document.getElementById("myBtn");
+            var span = document.getElementsByClassName("close")[0];
+            btn.onclick = function() {
+              modal.style.display = "block";
+            }
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+          </script>
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          <form method="GET" action="/">
+            <button type="submit" class="btn-gradient red mini">
+              Reset All
+            </button>
+          </form>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <form method="GET" action="/result">
+            Version:
+            <select name="version" class="selectpicker form-control">
+              {% for v in versions %}
+                <option
+                  value="{{ v.name }}"
+                  {% if v.name == version.name %}
+                    selected="selected"
+                  {% endif %}>
+                  {{ v.name }}
+                </option>
+              {% endfor %}
+            </select> &nbsp;
+            <input  name="keyword" placeholder="Search for a Word Sequence" value="{{ keyword }}">
+            <button type="submit">Search</button>
+          </form>      
+          <form method="GET" action="/case">
+            <button
+              type="submit"
+              {% if caseSns %}
+                class="btn-gradient dark-green mini"
+              {% else %}
+                class="btn-gradient green mini"
               {% endif %}>
-              {{ v.name }}
-            </option>
-          {% endfor %}
-        </select> &nbsp;
-        <input  name="keyword" placeholder="Search for a Word Sequence" value={{ keyword }}>
-        <button type="submit">Search</button>
-      </form>      
-      <form method="GET" action="/case">
-        <button
-          type="submit"
-          {% if caseSns %}
-            class="btn-gradient dark-green mini"
-          {% else %}
-            class="btn-gradient green mini"
-          {% endif %}>
-          Case Sensitive
-        </button>
-        &nbsp;&nbsp;&nbsp; About the version:
-        <a href="{{ version.wiki }}" target="_blank">{{ version.expansion }}</a>
-      </form>
-    </td>
-    <td>
-      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-      &emsp;&emsp;&emsp;&emsp;
-    </td>
-    </tr>
-    </table>
+              Case Sensitive
+            </button>
+            &nbsp;&nbsp;&nbsp; About the version:
+            <a href="{{ version.wiki }}" target="_blank">{{ version.expansion }}</a>
+          </form>
+        </td>
+        <td>
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          &emsp;&emsp;&emsp;&emsp;
+        </td>
+        </tr>
+      </table>
     </center>
     <br>
     <hr />
       <table>
         <tr>
-          <th class="OT" colspan="1">
-            <form class="form-inline" method="GET" action="/testChoose/ot">
-              <button type="submit" class="btn-gradient cyan mini">
-                The Old Testament
-              </button>
-            </form>
-          </th>
-          <th class="Bib" colspan="2">
-            <form class="form-inline" method="GET" action="/testChoose/bib">
-              <button type="submit" class="btn-gradient purple mini">
-                The Entire Bible
-              </button>
-            </form>
-          </th>
-          <th class="NT" colspan="1">
-            <form class="form-inline" method="GET" action="/testChoose/nt">
-              <button type="submit" class="btn-gradient cyan mini">
-                The New Testament
-              </button>
-            </form>
+          <th align="center" colspan="4">
+            <table>
+              <th class="OT" colspan="1">
+                <form class="form-inline" method="GET" action="/testChoose/ot">
+                  <button type="submit" class="btn-gradient cyan mini">
+                    The Old Testament
+                  </button>
+                </form>
+              </th>
+              <th class="Bib" colspan="1">
+                <form class="form-inline" method="GET" action="/testChoose/bib">
+                  <button type="submit" class="btn-gradient purple mini">
+                    The Entire Bible
+                  </button>
+                </form>
+              </th>
+              <th class="NT" colspan="1">
+                <form class="form-inline" method="GET" action="/testChoose/nt">
+                  <button type="submit" class="btn-gradient cyan mini">
+                    The New Testament
+                  </button>
+                </form>
+              </th>
+            </table>
           </th>
           <th>Verse List</th>
         </tr>
         <tr>
     <form class="form-inline" method="GET" action="/bookChoose">
           <td valign="top" style="width:5%">
-            <ul style="list-style-type:none;">
-              {% for book in books %}
-                {% if book.testament == 'OT1' %}
-                  <li>
-                    <button name="book" value="{{ book.text }}" type="submit" {% if book.selected %} class="btn-gradient dark-blue mini" {% else %} class="btn-gradient blue mini" {% endif %}>
-                      {{ book.text }}
-                    </button>
-                  </li>
-                {% endif %}
-              {% endfor %}
-            </ul>
+            {% for book in books %}
+              {% if book.testament == 'OT1' %}
+                <button name="book" value="{{ book.text }}" type="submit" {% if book.selected %} class="btn-gradient dark-blue mini" {% else %} class="btn-gradient blue mini" {% endif %}>
+                  {{ book.text }}
+                </button>
+                <br>
+              {% endif %}
+            {% endfor %}
           </td>
-          <td valign="top" style="width:10%">
-            <ul style="list-style-type:none;">
-              {% for book in books %}
-                {% if book.testament == 'OT2' %}
-                  <li>
-                    <button name="book" value="{{ book.text }}" type="submit" {% if book.selected %} class="btn-gradient dark-blue mini" {% else %} class="btn-gradient blue mini" {% endif %}>
-                      {{ book.text }}
-                    </button>
-                  </li>
-                {% endif %}
-              {% endfor %}
-            </ul>
+          <td valign="top" style="width:8%">
+            {% for book in books %}
+              {% if book.testament == 'OT2' %}
+                <button name="book" value="{{ book.text }}" type="submit" {% if book.selected %} class="btn-gradient dark-blue mini" {% else %} class="btn-gradient blue mini" {% endif %}>
+                  {{ book.text }}
+                </button>
+                <br>
+              {% endif %}
+            {% endfor %}
           </td>
-          <td valign="top" style="width:10%">
-            <ul style="list-style-type:none;">
-              {% for book in books %}
-                {% if book.testament == 'NT1' %}
-                  <li>
-                    <button name="book" value="{{ book.text }}" type="submit" {% if book.selected %} class="btn-gradient dark-blue mini" {% else %} class="btn-gradient blue mini" {% endif %}>
-                      {{ book.text }}
-                    </button>
-                  </li>
-                {% endif %}
-              {% endfor %}
-            </ul>
+          <td valign="top" style="width:8%">
+            {% for book in books %}
+              {% if book.testament == 'NT1' %}
+                <button name="book" value="{{ book.text }}" type="submit" {% if book.selected %} class="btn-gradient dark-blue mini" {% else %} class="btn-gradient blue mini" {% endif %}>
+                  {{ book.text }}
+                </button>
+                <br>
+              {% endif %}
+            {% endfor %}
           </td>
-          <td valign="top" style="width:15%">
-            <ul style="list-style-type:none;">
-              {% for book in books %}
-                {% if book.testament == 'NT2' %}
-                  <li style="width:50%">
-                    <button name="book" value="{{ book.text }}" type="submit" {% if book.selected %} class="btn-gradient dark-blue mini" {% else %} class="btn-gradient blue mini" {% endif %}>
-                      {{ book.text }}
-                    </button>
-                  </li>
-                {% endif %}
-              {% endfor %}
-            </ul>
+          <td valign="top" style="width:5%">
+            {% for book in books %}
+              {% if book.testament == 'NT2' %}
+                <button name="book" value="{{ book.text }}" type="submit" {% if book.selected %} class="btn-gradient dark-blue mini" {% else %} class="btn-gradient blue mini" {% endif %}>
+                  {{ book.text }}
+                </button>
+                <br>
+              {% endif %}
+            {% endfor %}
           </td>
         <td id="verseList">
-          {% for row in rows %}
-          <p>{{ row.Book }} {{ row.Chapter }}:{{ row.Versecount }} - {{ row.verse }}</p>
-          {% endfor %}
+          <table>
+            {% for row in rows %}
+              <tr>
+                <td style="white-space: nowrap">
+                  &nbsp; {{ row.Book }} {{ row.Chapter }}:{{ row.Versecount }} &nbsp;&nbsp;
+                </td>
+                <td>
+                  {{ row.verse }}
+                </td>
+              </tr>
+              <tr>
+                <td><br class="small"></td>
+              </tr>
+            {% endfor %}
+          </table>
         </td>
       </tr>
     </table>

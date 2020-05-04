@@ -6,10 +6,23 @@ body {
   background-color: #F9F0E0;
 }
 
-header { border-bottom: 1px solid #000; }
-header > h1 { display: inline-block; }
-header > h4 { display: inline-block; }
-header span { margin-left: 100px; }
+header > h1 {
+  display: inline-block;
+}
+header > h4 {
+  display: inline-block;
+}
+header span {
+  margin-left: 100px;
+}
+
+br.small {
+  display: block;
+  content: "";
+  margin-top: 0.5em;
+  line-height: 50%;
+  vertical-align: top;
+}
 
 .modal {
   display:          none; /* Hidden by default */
