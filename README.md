@@ -29,4 +29,9 @@ The databases have been parsed from the SQL databases provided by [@scrollmapper
 * Highlighting the search keyword in the results (DONE)
 
 ***
+### Useful Links
+
+* [Jinja Template and Syntax](https://jinja.palletsprojects.com/en/2.11.x/templates/)
+
+***
 This project has been licensed under [![The GNU General Public License v3.0](https://www.gnu.org/graphics/gplv3-88x31.png "The GNU General Public License v3.0")](https://www.gnu.org/licenses/gpl-3.0.en.html)
