@@ -3,14 +3,16 @@ import sqlite3
 import re
 
 sql = "SELECT * FROM bible WHERE LOWER(verse) LIKE LOWER(?) ORDER BY Book, Chapter, Versecount"
-versions = [{'expansion': "New King James Version",      'name': "NKJV", 'db': 'databases/NKJVBible_Database.db', 'wiki': 'https://en.wikipedia.org/wiki/New_King_James_Version'},
+versions = [
+            {'expansion': "New King James Version",      'name': "NKJV", 'db': 'databases/NKJVBible_Database.db', 'wiki': 'https://en.wikipedia.org/wiki/New_King_James_Version'},
+            {'expansion': "King James Version",          'name': "KJV",  'db': 'databases/KJVBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/King_James_Version '},
             {'expansion': "American Standard Version",   'name': "ASV",  'db': 'databases/ASVBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/American_Standard_Version'},
-            {'expansion': "King James Version",          'name': "KJV",  'db': 'databases/KJVBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/King_James_Version	'},
             {'expansion': "Young's Literal Translation", 'name': "YLT",  'db': 'databases/YLTBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/Young\'s_Literal_Translation'},
             {'expansion': "Darby English Bible",         'name': "DBY",  'db': 'databases/DBYBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/Darby_Bible'},
             {'expansion': "Webster's Revision",          'name': "WBT",  'db': 'databases/WBTBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/Webster%27s_Revision'},
             {'expansion': "World English Bible",         'name': "WEB",  'db': 'databases/WEBBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/World_English_Bible'},
-            {'expansion': "Bible in Basic English",      'name': "BBE",  'db': 'databases/BBEBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/Bible_in_Basic_English'}]
+            # {'expansion': "Bible in Basic English",      'name': "BBE",  'db': 'databases/BBEBible_Database.db',  'wiki': 'https://en.wikipedia.org/wiki/Bible_in_Basic_English'}
+            ]
 books    = [ {
       'type': "Pentateuch", 'selected': True, 'testament': "OT1", 'id': 0,  'text': "Genesis" }, {
       'type': "Pentateuch", 'selected': True, 'testament': "OT1", 'id': 1,  'text': "Exodus" }, {

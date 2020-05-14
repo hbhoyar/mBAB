@@ -42,12 +42,12 @@ The databases have been parsed from the SQL databases provided by [@scrollmapper
 ##### You are most welcome to contribute for adding to this list (issues) and for removing from this list (pull requests)
 
 * Making the web application completely compatible for mobile devices; i.e., devices without 1920 x 1080 resolution: Refer to [this](https://stackoverflow.com/a/31908156/6539635), [this](https://stackoverflow.com/a/29589339/6539635) and [this](https://stackoverflow.com/a/24499296/6539635) StackOverflow answers, also refer to [this blog](https://www.inserthtml.com/2011/08/making-website-fit-screen/)
-* Addition of an Search ORing capability; i.e., to search for any of the several keywords of those provided by the user
-* Addition of copyrighted versions such as ESV, NIV and BSI Indian versions (which also require Indian language keyboards)
+* Addition of an Search ORing capability; i.e., to search for any of the several keywords of those provided by the user. This can be using separators such as commas and mergers such as double-inverted-commas
+* Addition of copyrighted versions such as NIV, ESV, NLT and BSI Indian versions (which also require Indian language keyboards): Rathert han storing the databases, the search for a verse can be linked to searches in the YouVersion or BibleGateway databases
 * Removal of PythonAnywhere cache when opened by a new user (presently, an entry by one user may be displayed as the entry in the browser of another user): Storing search keyword, version, case-sensitivity, selected books and rows on the browser of the user rather than on the webpage hosting platform (PythonAnywhere): Refer to [this StackOverflow answer](https://stackoverflow.com/a/16206342/6539635)
-* More styling features and a logo for mBAB
 * Pagination for verses as an option to the user (not everyone wants pagination but some may prefer it for better rendering of the verses
 * Subdivision of the testaments such as Law, History, Gospels, etc. (conflicting suggestions - not to be pursued at the moment)
+* More styling features and a logo for mBAB (DONE)
 * Highlighting the search keyword in the results (DONE)
 * Display of the number of matching verses (DONE)
 
