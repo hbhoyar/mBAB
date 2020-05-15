@@ -209,10 +209,21 @@
                 </td>
                 <td>
                   {%- for part in row.verse -%}
-                    {%- if (not (keyword == "")) and ((keyword.upper() in part.upper() and not caseSns) or keyword in part) -%}
-                      <mark>{{ part }}</mark>
-                    {%- else -%}
+                    {%- if (keyword == "") -%}
                       {{ part }}
+                    {%- else -%}
+                      {%- set satisfied = namespace(value=0) -%}
+                      {%- for word in keywords -%}
+                        {%- if ((word.upper() in part.upper() and not caseSns) or word in part) -%}
+                          {%- set satisfied.value = 1 -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+
+                      {%- if (satisfied.value == 1) -%}
+                        <mark>{{ part }}</mark>
+                      {%- else -%}
+                        {{ part }}
+                      {%- endif -%}
                     {%- endif -%}
                   {%- endfor -%}
                 </td>

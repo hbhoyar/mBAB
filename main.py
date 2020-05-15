@@ -94,16 +94,30 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
+def keywordSplitter(keywordInp):
+    keywords = keywordInp.split(',')
+    return keywords
+
 app = Flask(__name__)
 
-def bookUpdate(rows=[]):
+# resultSorted() idea incorporated from https://web.archive.org/web/20150222160237/stygianvision.net/updates/python-sort-list-object-dictionary-multiple-key/
+def resultSorter(rows=[]):
+    return sorted(rows, key = lambda row: (row['Book'], row['Chapter'], row['Versecount']))
+
+def bookUpdate(keywords, rows=[]):
     chBooks = []
     for book in books:
         if book['selected'] == True:
             chBooks.append(book['id'])
     editRows = []
     for row in rows:
-        if (row['Book'] in chBooks) and (not caseSns or keyword in row['verse']):
+        exactMatch = False
+        for word in keywords:
+            if (word in row['verse']):
+                exactMatch = True
+                break
+
+        if (row['Book'] in chBooks) and (not caseSns or exactMatch):
             book = next(item for item in books if item['id'] == row['Book'])['text']
             editRows.append({'Book': book, 'Chapter': row['Chapter'], 'Versecount': row['Versecount'], 'verse': row['verse']})
     return editRows
@@ -112,19 +126,35 @@ def dbRefresh():
     global version, versions, sql, keyword, rows
     db = sqlite3.connect(next(item for item in versions if item['name'] == version['name'])['db'])
     db.row_factory = dict_factory
-    cur = db.cursor()
-    cur.execute(sql, ['%' + keyword + '%'])
-    rows = cur.fetchall()
+    rows = []
+    cur  = db.cursor()
+    
+    # Search ORing, ANDing ...
+    keywords = keywordSplitter(keyword)
+    
+    for word in keywords:
+        cur.execute(sql, ['%' + word + '%'])
+        for row in cur.fetchall():
+            if row not in rows:
+                rows.append(row)
+    
     cur.close()
-    rows = bookUpdate(rows)
+    rows = resultSorter(rows)
+    rows = bookUpdate(keywords, rows)
     for row in rows:
-      if (keyword == "") :
-        row['verse'] = re.split("( )", row['verse'], flags=re.IGNORECASE)
-      else:
-        row['verse'] = re.split("("+keyword+")", row['verse'], flags=re.IGNORECASE)
-    return render('index.html', rows = rows, version = version, versions = versions, keyword = keyword, books = books, caseSns = caseSns)
-
-
+        row['verse'] = str(row['verse'])
+        if (keyword == ""):
+            row['verse'] = re.split("( )", row['verse'], flags=re.IGNORECASE)
+        else:
+            wordSeq = ["("]
+            for word in keywords:
+                wordSeq.append(word)
+                wordSeq.append("|")
+            wordSeq.pop()
+            wordSeq.append(")")
+            wordSeq = ''.join(wordSeq)
+            row['verse'] = re.split(wordSeq, row['verse'], flags=re.IGNORECASE)
+    return render('index.html', rows = rows, version = version, versions = versions, keyword = keyword, books = books, caseSns = caseSns, keywords = keywords)
 
 @app.route('/', methods=['GET'])
 def index():
@@ -188,6 +218,14 @@ def bookSelect():
             book['selected'] = not book['selected']
             break
     return dbRefresh()
+
+# utility_functions() incorporated from https://stackoverflow.com/a/42888467/6539635
+@app.context_processor
+def utility_functions():
+    def print_in_console(message):
+        print(str(message))
+
+    return dict(mdebug=print_in_console)
 
 if __name__ == '__main__':
     app.run(debug=True)
